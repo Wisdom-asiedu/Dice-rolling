@@ -1,4 +1,4 @@
-# Dice Rolling
+# Dice Rolling Simulator
 A program to simulate dice rolling
 
 ## Group Work
