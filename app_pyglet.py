@@ -29,7 +29,7 @@ dice_label = pyglet.text.Label("",
 
 # Define a function to draw a single dice
 def draw_dice(x, y, value):
-    dice_sprite = pyglet.image.load(f'src/assets/dice{value}.png')
+    dice_sprite = pyglet.image.load(f'src/assets/Dice-{value}.png')
     dice_sprite.blit(x, y, width=DICE_SIZE, height=DICE_SIZE)
 
 # Define a function to draw the previous rolls
