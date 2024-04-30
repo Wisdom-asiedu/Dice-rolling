@@ -24,6 +24,7 @@ def view_history():
     history_window = tk.Toplevel(root)
     history_window.title("Roll History")
     history_window.configure(bg='dark blue')
+    history_window.iconphoto(False, PhotoImage(file="src/assets/history_favicon.png"))
     history_text = tk.Text(history_window, wrap=tk.WORD, font=("Arial", 12), fg='dark blue', bg='#ddd')
     history_text.pack(padx=5, pady=5)
     for roll in roll_history:
@@ -35,10 +36,7 @@ root.title("Dice Rolling Simulator")
 root.geometry("600x450")
 root.resizable(True, True)
 root.configure(bg='light blue')
-
-# Set icon
-icon = PhotoImage(file="src/assets/favicon.png")
-root.iconphoto(False, icon)
+root.iconphoto(False, PhotoImage(file="src/assets/favicon.png"))
 
 # Create widgets
 num_dice_label = tk.Label(root, text="Number of Dice:", bg='light blue', font=("Pristina", 16))
