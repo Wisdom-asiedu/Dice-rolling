@@ -23,7 +23,7 @@ def entry(root: tk, bg_color: str, f_family: str, f_size: int, h_thick: int, h_b
     )
     return element
 
-def button(root: tk, text_label: str, func, fg_color: str, bg_color: str, f_family: str, f_size: int, type: str, a_fg: str = None, a_bg: str = None):
+def button(root: tk, text_label: str, func, fg_color: str, bg_color: str, f_family: str, f_size: int, type: str, active_fg: str = None, active_bg: str = None):
     '''Defines a syntax to create a Button element'''
     element = tk.Button(
         root,
@@ -35,7 +35,7 @@ def button(root: tk, text_label: str, func, fg_color: str, bg_color: str, f_fami
         bd=1,
         padx=15,
         relief=type,
-        activeforeground=a_fg, 
-        activebackground=a_bg
+        activeforeground=active_fg, 
+        activebackground=active_bg
     )
     return element

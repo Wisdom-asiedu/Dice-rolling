@@ -1,11 +1,11 @@
 import tkinter as tk
-from tkinter import PhotoImage
-import src.main
+from tkinter import PhotoImage, Label
+import src.main as app
 from src.widget import label, button
 
 def start_sim():
     root.withdraw()  # Hide the intro window
-    src.main.start_simulation()  # Start the main window
+    app.start_simulation()  # Start the main window
     root.quit()  # Exit the application when main window is closed
 
 def quit_sim():
@@ -14,28 +14,33 @@ def quit_sim():
 # Create the window
 root = tk.Tk()
 root.title("Dice Rolling Simulator")
-root.geometry("800x600")
-root.resizable(False, False)  # Disable window resizing
-root.configure(bg='light blue')
 root.iconphoto(False, PhotoImage(file="src/assets/favicon.ico"))
+root.geometry("800x600")
+root.resizable(True, True)
+root.configure(bg=app.light_blue)
 
 # Create the widgets
-welcome = label(root, "Welcome", "light blue", "Script MT Bold", 30)
-to = label(root, "to", "light blue", "Script MT Bold", 12)
-drs= label(root, "Dice Rolling Simulator", "light blue", "Exotc350 DmBd BT", 36)
+logo_image = PhotoImage(file="src/assets/logo_intro.png")
+logo_label = Label(root, image=logo_image, bg=app.light_blue)
+text_welcome = label(root, "Welcome", app.light_blue, "Script MT Bold", 30)
+text_to = label(root, "to", app.light_blue, "Script MT Bold", 12)
+text_drs= label(root, "Dice Rolling Simulator", app.light_blue, "Exotc350 DmBd BT", 42)
 start_button = button(root, "Start", start_sim, "white", "dark blue", "Exotc350 DmBd BT", 16, "raise")
 quit_button = button(root, "Quit", quit_sim, "white", "red", "Exotc350 DmBd BT", 16, "ridge")
 
+# Layout widgets
 root.columnconfigure(0, weight=1)
 root.columnconfigure(2, weight=1)
 root.rowconfigure(0, weight=1)
-root.rowconfigure(6, weight=2)
+root.rowconfigure(7, weight=1)
 
-welcome.grid(row=1, column=1)
-to.grid(row=2, column=1)
-drs.grid(row=3, column=1)
-start_button.grid(row=4, column=1, pady=40)
-quit_button.grid(row=5, column=1, pady=5)
+# Placce widgets
+text_welcome.grid(row=1, column=1)
+text_to.grid(row=2, column=1)
+text_drs.grid(row=3, column=1)
+logo_label.grid(row=4, column=1, pady=5)
+start_button.grid(row=5, column=1, pady=30)
+quit_button.grid(row=6, column=1, pady=5)
 
 # Start the intro window loop
 root.mainloop()
