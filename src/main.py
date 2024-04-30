@@ -1,6 +1,5 @@
 import random
 import tkinter as tk
-#from tkinter import PhotoImage
 from src.widget import label, entry, button
 
 roll_history = []
@@ -24,9 +23,8 @@ def clear_history():
 def view_history():
     history_window = tk.Toplevel(root)
     history_window.title("Roll History")
+    history_window.iconbitmap(bitmap='src/assets/history_favicon.ico')
     history_window.configure(bg='dark blue')
-    #history_window.iconphoto(False, PhotoImage(file="src/assets/history_favicon.png"))
-    history_window.wm_iconbitmap("src/assets/favicon.ico")  
     history_text = tk.Text(history_window, wrap=tk.WORD, font=("Maiandra GD", 12), fg='dark blue', bg='#ffe')
     history_text.pack(padx=5, pady=5)
     for roll in roll_history:
@@ -37,24 +35,24 @@ def on_closing():
     root.destroy()  # Clean up resources
     
 def start_simulation():
+    '''Runs the main app'''
     # Create main window
     global root
     root = tk.Tk()
     root.title("Dice Rolling Simulator")
+    root.iconbitmap(bitmap='src/assets/favicon.bmp')
     root.geometry("800x600")
     root.resizable(True, True)
     root.configure(bg='light blue')
-    #root.iconphoto(True, PhotoImage(file="src/assets/favicon.ico"))
-    root.wm_iconbitmap("src/assets/favicon.ico")  
-    root.protocol("WM_DELETE_WINDOW", on_closing)  # Bind the on_closing function to the window close event
-
+    root.protocol("WM_DELETE_WINDOW", on_closing)
 
     # Create widgets
     global num_dice_entry
     global sides_entry
     global result_label
+    
     num_dice_label = label(root, "Number of Dice: ", "light blue", "Book Antiqua", 16)
-    sides_label = label(root, "Number of Dice: ", "light blue", "Book Antiqua", 16)
+    sides_label = label(root, "Number of Sides: ", "light blue", "Book Antiqua", 16)
     num_dice_entry = entry(root, "white", "Maiandra GD", 12, 1, "dark blue", "blue")
     sides_entry = entry(root, "white", "Maiandra GD", 12, 1, "dark blue", "blue")
     roll_button = button(root, "Roll Dice", roll_button_clicked, "dark blue", "white", "Exotc350 DmBd BT", 16, "solid", "white", "dark blue")
@@ -71,6 +69,7 @@ def start_simulation():
     root.rowconfigure(0, weight=1)
     root.rowconfigure(7, weight=1)
 
+    # Place widgets
     num_dice_label.grid(row=1, column=1, pady=5)
     num_dice_entry.grid(row=1, column=2, pady=5)
     sides_label.grid(row=2, column=1, pady=5)
