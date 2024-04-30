@@ -1,6 +1,6 @@
 import random
 import tkinter as tk
-from tkinter import PhotoImage
+#from tkinter import PhotoImage
 from src.widget import label, entry, button
 
 roll_history = []
@@ -25,13 +25,18 @@ def view_history():
     history_window = tk.Toplevel(root)
     history_window.title("Roll History")
     history_window.configure(bg='dark blue')
-    history_window.iconphoto(False, PhotoImage(file="src/assets/history_favicon.png"))
+    #history_window.iconphoto(False, PhotoImage(file="src/assets/history_favicon.png"))
+    history_window.wm_iconbitmap("src/assets/favicon.ico")  
     history_text = tk.Text(history_window, wrap=tk.WORD, font=("Maiandra GD", 12), fg='dark blue', bg='#ffe')
     history_text.pack(padx=5, pady=5)
     for roll in roll_history:
         history_text.insert(tk.END, roll + "\n\n")
 
-def start_main_window():
+def on_closing():
+    root.quit()  # Terminate the main window
+    root.destroy()  # Clean up resources
+    
+def start_simulation():
     # Create main window
     global root
     root = tk.Tk()
@@ -39,7 +44,10 @@ def start_main_window():
     root.geometry("800x600")
     root.resizable(True, True)
     root.configure(bg='light blue')
-    root.iconphoto(False, PhotoImage(file="src/assets/favicon.png"))
+    #root.iconphoto(True, PhotoImage(file="src/assets/favicon.ico"))
+    root.wm_iconbitmap("src/assets/favicon.ico")  
+    root.protocol("WM_DELETE_WINDOW", on_closing)  # Bind the on_closing function to the window close event
+
 
     # Create widgets
     global num_dice_entry
@@ -49,7 +57,7 @@ def start_main_window():
     sides_label = label(root, "Number of Dice: ", "light blue", "Book Antiqua", 16)
     num_dice_entry = entry(root, "white", "Maiandra GD", 12, 1, "dark blue", "blue")
     sides_entry = entry(root, "white", "Maiandra GD", 12, 1, "dark blue", "blue")
-    roll_button = button(root, "Roll Dice", roll_button_clicked, "dark blue", "white", "Book Antiqua", 16, "solid", "white", "dark blue")
+    roll_button = button(root, "Roll Dice", roll_button_clicked, "dark blue", "white", "Exotc350 DmBd BT", 16, "solid", "white", "dark blue")
     result_label = label(root, "\n", "light blue", "Constantia", 16)
     view_history_button = button(root, "View History", view_history, "white", "dark blue", "Book Antiqua", 14, "ridge")
     clear_history_button = button(root, "Clear History", clear_history, "black", "red", "Book Antiqua", 14, "sunken")

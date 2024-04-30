@@ -33,7 +33,7 @@ def button(root: tk, text_label: str, func, fg_color: str, bg_color: str, f_fami
         bg=bg_color, 
         font=(f_family, f_size),
         bd=1,
-        padx=5,
+        padx=15,
         relief=type,
         activeforeground=a_fg, 
         activebackground=a_bg
