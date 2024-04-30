@@ -1,16 +1,16 @@
 import random
 
-def roll_dice(num_dice, num_sides):
+def roll_dice(num_dice: int, num_sides: int) -> None:
     rolls = []
     total = 0
-    for i in range(num_dice):
+    for _ in range(num_dice):
         roll = random.randint(1, num_sides)
         rolls.append(roll)
         total += roll
     print("Roll results:", rolls)
     print("Total score:", total)
 
-def validate_input():
+def validate_input() -> None:
     num_dice = int(input("Enter the number of dice to roll: "))
     if num_dice > 0:
         num_sides = int(input("Enter the number of sides for each die: "))
