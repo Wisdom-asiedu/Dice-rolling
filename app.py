@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import PhotoImage
-from bb import *
+import src.main
 
 def start_game():
     root.withdraw()  # Hide the intro window
-    bb.start_main_window()  # Start the main window
+    main.start_main_window()  # Start the main window
 
 def quit_game():
     root.quit()  # Exit the application
