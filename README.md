@@ -35,3 +35,6 @@ The GUI is accessed through "app.py"
 - ⁠1830022
 - 1814522
 - ⁠1826422
+
+
+Charley guys, I deserve champagne and icy cup 🫠
