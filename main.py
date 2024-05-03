@@ -9,7 +9,7 @@ def roll_dice(num_dice: int, num_sides: int) -> None:
         total = sum(rolls)
 
     # Displays dice art for 9 sided-die. The number of dice depends on the width of your screen to prevent
-    # distortion of the art. It could be adjusted accordingly to fill the width of the terminam
+    # distortion of the art. It could be adjusted accordingly to fill the width of the terminal
     if num_dice <= 12 and num_sides <= 9:               # Adjust num-dice to fill the width of your terminal
         for line in range(5):
             for roll in rolls:
