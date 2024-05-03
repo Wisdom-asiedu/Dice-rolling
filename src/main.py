@@ -6,31 +6,43 @@ from src.widget import label, entry, button
 roll_history = []
 light_blue = '#CEE8FA'
 
-def roll_dice(num_dice, sides):
-    rolls = [random.randint(1, sides) for _ in range(num_dice)]
+def roll_dice(num_dice, num_sides):
+    rolls = [random.randint(1, num_sides) for _ in range(num_dice)]
     total = sum(rolls)
     return rolls, total
 
 def roll_button_clicked(event=None):
-    num_dice = int(num_dice_entry.get())
-    sides = int(sides_entry.get())
-    rolls, total = roll_dice(num_dice, sides)
-    result_text = f"Rolls:\n{', '.join(str(roll) for roll in rolls)}\nTotal: {total}"
-    result_label.config(text=result_text)
-    roll_history.append(f"Rolled {num_dice} dice with {sides} sides: {rolls}\nTotal: {total}")
+    try:
+        num_dice = int(num_dice_entry.get())                                                                       # Gets input 
+        if num_dice > 0:
+            num_sides = int(sides_entry.get())                                                                     # Gets input   
+            if num_sides > 0:
+                rolls, total = roll_dice(num_dice, num_sides)
+                result_text = f"Rolls:\n{', '.join(str(roll) for roll in rolls)}\nTotal: {total}"
+                result_label.config(text=result_text, fg='black')                                                  # Outputs results       
+                roll_history.append(f"Rolled {num_dice} dice with {num_sides} sides: {rolls}\nTotal: {total}")
+            else:                                                                                                  # Handles errors
+                result_label.config(text="Cannot roll a die without sides", fg='red')
+        else:
+            result_label.config(text="The number of dice should be countable", fg='red')
+    except ValueError:
+        result_label.config(text="Enter a counting number!", fg='red')
 
-def clear_history():
-    roll_history.clear()
-        
 def view_history():
+    # Creates the View History window
     history_window = tk.Toplevel(root)
     history_window.title("Roll History")
     history_window.iconphoto(False, PhotoImage(file="src/assets/history_favicon.ico"))
     history_window.configure(bg='dark blue')
     history_text = Text(history_window, wrap=tk.WORD, font=("Maiandra GD", 12), fg='dark blue', bg='#F3F5FF')
     history_text.pack(fill="both", expand=True, padx=5, pady=5)
+
+    # Updates the roll list
     for roll in roll_history:
         history_text.insert(tk.END, roll + "\n\n")
+
+def clear_history():
+    roll_history.clear()
 
 def on_closing():
     root.quit()  # Terminate the main window
