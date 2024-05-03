@@ -1,5 +1,5 @@
 import random
-from mod.dice_art import dice_art as dice
+from src.dice_art import dice_art as dice
 
 def roll_dice(num_dice: int, num_sides: int) -> None:
     rolls = []
